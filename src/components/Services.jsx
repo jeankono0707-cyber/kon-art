@@ -167,12 +167,25 @@ export default function Services() {
 function ServiceCard({ service, index, inView, onOpen }) {
   const Icon = service.icon;
   const isFeature = index === 0;
+  const hasVideoBg = !!service.bgVideoId;
+  const hasImageBg = !!service.bgImage;
+  const hasMedia = hasVideoBg || hasImageBg;
 
-  // Wrapper : div for feature card (because it embeds an iframe — invalid inside <button>),
-  // motion.button for the others (full button semantics).
-  const Wrapper = isFeature ? motion.div : motion.button;
-  const wrapperProps = isFeature
-    ? { role: 'button', tabIndex: 0, onClick: onOpen, onKeyDown: (e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), onOpen()) }
+  // Wrapper : motion.div if iframe is involved (invalid inside <button>),
+  // motion.button otherwise. The image-only background can stay in a button.
+  const Wrapper = hasVideoBg ? motion.div : motion.button;
+  const wrapperProps = hasVideoBg
+    ? {
+        role: 'button',
+        tabIndex: 0,
+        onClick: onOpen,
+        onKeyDown: (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onOpen();
+          }
+        },
+      }
     : { type: 'button', onClick: onOpen };
 
   return (
@@ -183,19 +196,18 @@ function ServiceCard({ service, index, inView, onOpen }) {
       transition={{ duration: 0.9, delay: index * 0.06, ease: [0.32, 0.72, 0, 1] }}
       className={`bezel group block text-left cursor-pointer ${service.span}`}
     >
-      <div className={`bezel-core flex h-full flex-col p-7 transition-colors duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] md:p-9 ${isFeature ? 'lg:p-12' : 'hover:bg-ink-800'}`}>
-        {/* Feature card : looping muted showreel as background */}
-        {isFeature && (
+      <div className={`bezel-core flex h-full flex-col p-7 transition-colors duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] md:p-9 ${isFeature ? 'lg:p-12' : ''} ${!hasMedia ? 'hover:bg-ink-800' : ''}`}>
+        {/* Background : looping muted YouTube video */}
+        {hasVideoBg && (
           <>
             <iframe
               aria-hidden
-              src="https://www.youtube-nocookie.com/embed/6pgIvI6vrPE?autoplay=1&mute=1&loop=1&playlist=6pgIvI6vrPE&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1"
+              src={`https://www.youtube-nocookie.com/embed/${service.bgVideoId}?autoplay=1&mute=1&loop=1&playlist=${service.bgVideoId}&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1`}
               allow="autoplay; encrypted-media; picture-in-picture"
               className="pointer-events-none absolute inset-0 h-full w-full scale-[1.4] object-cover opacity-50 transition-opacity duration-700 group-hover:opacity-65"
               loading="lazy"
               tabIndex={-1}
             />
-            {/* Cinematic overlay so text stays readable */}
             <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-ink-950/95 via-ink-950/65 to-ink-950/55" />
             <div aria-hidden className="pointer-events-none absolute inset-0" style={{
               background: 'radial-gradient(ellipse at top right, rgba(93,195,215,0.12), transparent 60%)',
@@ -203,14 +215,34 @@ function ServiceCard({ service, index, inView, onOpen }) {
           </>
         )}
 
+        {/* Background : static image (no video) */}
+        {hasImageBg && !hasVideoBg && (
+          <>
+            <img
+              aria-hidden
+              src={service.bgImage}
+              alt=""
+              loading="lazy"
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-50 transition-all duration-700 group-hover:opacity-65 group-hover:scale-[1.04]"
+            />
+            <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-ink-950/95 via-ink-950/65 to-ink-950/55" />
+            <div aria-hidden className="pointer-events-none absolute inset-0" style={{
+              background: 'radial-gradient(ellipse at top right, rgba(93,195,215,0.12), transparent 60%)',
+            }} />
+          </>
+        )}
+
+        {/* Top-right number */}
         <div className="absolute right-7 top-7 z-10 font-mono text-[11px] text-white/30">
           {String(index + 1).padStart(2, '0')}
         </div>
 
+        {/* Icon */}
         <div className="relative z-10 mb-auto inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:border-cyan-500/40 group-hover:bg-cyan-500/[0.08]">
           <Icon size={isFeature ? 26 : 22} weight="light" className="text-cyan-400" />
         </div>
 
+        {/* Title + description */}
         <div className="relative z-10 mt-10">
           <h3 className={`display text-white ${isFeature ? 'text-3xl md:text-4xl' : 'text-xl md:text-2xl'}`}>
             {service.title}
@@ -226,7 +258,8 @@ function ServiceCard({ service, index, inView, onOpen }) {
           <ArrowUpRight size={12} weight="light" className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
 
-        {!isFeature && (
+        {/* Hover spotlight only on cards without media bg */}
+        {!hasMedia && (
           <span aria-hidden className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100" style={{
             background: 'radial-gradient(600px circle at 30% 0%, rgba(93,195,215,0.14), transparent 50%)',
           }} />

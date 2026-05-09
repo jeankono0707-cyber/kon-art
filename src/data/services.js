@@ -11,6 +11,7 @@ export const services = [
     title: 'Animation 3D',
     desc: "Animation de personnages, cycles, acting et séquences stylisées. Plus de 4 ans en studio sur des projets ULTIMA VACCAE, Jumbo MANA, DOM FRED.",
     span: 'lg:col-span-7 lg:row-span-2',
+    bgVideoId: '6pgIvI6vrPE', // Showreel — looping muted bg
     detail: {
       tagline: "Donner vie aux personnages, à la caméra et au mouvement.",
       what: "Animation de personnages 3D, cycles (marche, course, idle), acting expressif, séquences stylisées, animation de caméra cinématique. Pipeline Maya · iClone · Toon Boom.",
@@ -67,6 +68,7 @@ export const services = [
     title: 'Modélisation 3D',
     desc: "Hard surface, organique, stylisé. Pipeline ZBrush + Maya. Topologie clean prête pour l'animation.",
     span: 'lg:col-span-4',
+    bgImage: '/MODELING.png',
     detail: {
       tagline: "Des modèles propres, prêts à être animés et rendus.",
       what: "Modélisation hard-surface (objets, véhicules, environnements) et organique (personnages, créatures, anatomie). Sculpting ZBrush, retopo Maya, UVs propres, normal maps.",
@@ -86,6 +88,7 @@ export const services = [
     title: 'Lighting & Rendering',
     desc: "Mise en lumière cinématographique sous Arnold et V-Ray. Lookdev et étalonnage final.",
     span: 'lg:col-span-4',
+    bgVideoId: 'uUCeWzxNOss', // WHO — looping muted bg
     detail: {
       tagline: "L'image finale qui donne envie de regarder une seconde fois.",
       what: "Lighting cinématographique sous Arnold ou V-Ray : key light, fill, rim, GI, volumetrics. Lookdev complet, render passes, compositing AE / DaVinci, étalonnage.",

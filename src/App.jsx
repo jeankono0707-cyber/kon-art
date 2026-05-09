@@ -99,6 +99,7 @@ export default function App() {
         <DirectionVisuelle />
         <Portfolio />
         <Showreel />
+        <Feedback />
         <Archives />
         <CV />
         <Skills />
