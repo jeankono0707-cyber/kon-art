@@ -59,30 +59,25 @@ export default function About() {
           transition={{ duration: 1, delay: 0.15, ease: [0.32, 0.72, 0, 1] }}
           className="lg:col-span-7"
         >
-          {/* Featured render — Nocturne (character work emblématique) */}
-          <a
-            href="https://www.artstation.com/artwork/NxXLw5"
-            target="_blank"
-            rel="noreferrer"
-            className="bezel group block"
-          >
+          {/* Featured portrait — Jean Marie Onana Kono */}
+          <div className="bezel group block">
             <div className="bezel-core aspect-[4/5] lg:aspect-[5/6]">
               <img
-                src="https://cdna.artstation.com/p/assets/images/images/040/842/452/large/jean-marie-onana-kono-face2.jpg?1630013790"
-                alt="Nocturne — character work par Jean Marie Onana Kono"
+                src="/PORTRAIT.png"
+                alt="Jean Marie Onana Kono — 3D Generalist · Animateur 3D"
                 className="h-full w-full object-cover transition-all duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.04]"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/10 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-cyan-300">Featured · Character</div>
-                  <div className="logo-text text-xl text-white mt-1">NOCTURNE</div>
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-cyan-300">Portrait · 3D Artist</div>
+                  <div className="logo-text text-xl text-white mt-1">J.M. ONANA KONO</div>
                 </div>
-                <div className="font-mono text-xs text-white/60">2021</div>
+                <div className="font-mono text-xs text-white/60">Lyon · 2026</div>
               </div>
             </div>
-          </a>
+          </div>
 
           <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4">
             {stats.map((s, i) => (
