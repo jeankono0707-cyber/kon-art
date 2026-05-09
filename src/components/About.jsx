@@ -63,7 +63,7 @@ export default function About() {
           <div className="bezel group block">
             <div className="bezel-core aspect-[4/5] lg:aspect-[5/6]">
               <img
-                src="/PORTRAIT.png"
+                src="/PORTRAIT2.jpg"
                 alt="Jean Marie Onana Kono — 3D Generalist · Animateur 3D"
                 className="h-full w-full object-cover transition-all duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.04]"
                 loading="lazy"
