@@ -1,44 +1,68 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, X } from '@phosphor-icons/react';
+import { Play, X, ArrowUpRight } from '@phosphor-icons/react';
 import { useReveal } from '../hooks/useReveal.js';
 
-const SHOWREEL_ID = '6pgIvI6vrPE';
-const SHOWREEL_POSTER = `https://i.ytimg.com/vi/${SHOWREEL_ID}/maxresdefault.jpg`;
+// === Hero film — vidéo principale du portfolio ===
+const HERO_FILM = {
+  id: 'showreel-main',
+  title: 'A film by J.M. Onana Kono',
+  tagline: 'Animation 3D · Direction visuelle · Storytelling',
+  videoId: 'uUCeWzxNOss',
+  type: 'youtube',
+  year: '2026',
+  role: 'Director · 3D Generalist',
+  format: '16:9 · 4K',
+};
 
-/** Other films to highlight under the main showreel. */
-const FILMS = [
+// === Selected Films — gallery (no duplicates with the rest of the site) ===
+const SELECTED_FILMS = [
+  {
+    id: 'film-cinematic',
+    title: 'Cinematic sequence',
+    subtitle: 'Réalisation · 3D Generalist',
+    desc: "Séquence cinématographique — direction visuelle, lighting et animation.",
+    type: 'youtube',
+    videoId: 'NNmw87qh4qQ',
+    aspect: 'aspect-video',
+    year: '2026',
+    genre: 'Unreal cinematic',
+    accent: 'cyan',
+  },
   {
     id: 'sprint',
     title: 'Sprint créatif',
-    subtitle: 'Démo — produit en 1 semaine',
+    subtitle: 'Quick work · 1 semaine',
     desc: "Démonstration de production rapide : test créatif, animation et lighting réalisés en une semaine.",
     type: 'youtube',
     videoId: 'GHjD8A-zL0k',
     aspect: 'aspect-video',
-    badge: 'Quick Work',
+    year: '2025',
+    genre: 'Experimental sequence',
     accent: 'ember',
   },
   {
     id: 'skyrock',
     title: 'Collaboration Skyrock',
-    subtitle: 'Brand content · 2024',
-    desc: 'Visuels et animations 3D pour les contenus médias et la communication Skyrock.',
+    subtitle: 'Brand content · Client',
+    desc: "Visuels et animations 3D pour les contenus médias et la communication Skyrock.",
     type: 'youtube',
     videoId: 'iv-yKRtIgnE',
     aspect: 'aspect-video',
-    badge: 'Client',
+    year: '2024',
+    genre: 'Music / Brand',
     accent: 'cyan',
   },
   {
     id: 'master-film',
-    title: 'Film de fin d\'études',
+    title: "Film de fin d'études",
     subtitle: 'MOPA Arles · Master',
     desc: "Réalisation, direction artistique, storytelling et animation. Le projet d'auteur qui résume mon parcours.",
     type: 'drive',
     videoId: '1w_2wyvZAC3iCuFi61hVWxccMgghK24zW',
     aspect: 'aspect-video',
-    badge: 'Master Thesis',
+    year: '2023',
+    genre: 'Short film',
     accent: 'cyan',
   },
   {
@@ -49,7 +73,8 @@ const FILMS = [
     type: 'youtube',
     videoId: 'nJYq1QjrHTk',
     aspect: 'aspect-[9/16]',
-    badge: 'Short · 9:16',
+    year: '2025',
+    genre: 'Social · 9:16',
     accent: 'ember',
   },
 ];
@@ -59,7 +84,6 @@ function FilmCard({ film, onOpen, index }) {
   const accentText = film.accent === 'ember' ? 'text-ember-400' : 'text-cyan-300';
   const accentBorder = film.accent === 'ember' ? 'border-ember-500/40' : 'border-cyan-400/40';
 
-  // YouTube poster — for Drive we use a placeholder (Drive doesn't expose thumb easily)
   const poster = film.type === 'youtube'
     ? `https://i.ytimg.com/vi/${film.videoId}/maxresdefault.jpg`
     : 'https://cdna.artstation.com/p/assets/images/images/040/842/452/large/jean-marie-onana-kono-face2.jpg?1630013790';
@@ -70,8 +94,8 @@ function FilmCard({ film, onOpen, index }) {
       onClick={() => onOpen(film)}
       initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
       whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8, delay: index * 0.06, ease: [0.32, 0.72, 0, 1] }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.8, delay: index * 0.08, ease: [0.32, 0.72, 0, 1] }}
       className="bezel group block text-left"
     >
       <div className={`bezel-core ${film.aspect}`}>
@@ -79,14 +103,19 @@ function FilmCard({ film, onOpen, index }) {
           src={poster}
           alt={film.title}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.06]"
+          className="h-full w-full object-cover transition-all duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.06] group-hover:saturate-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/30 to-transparent" />
+        {/* Cinematic darken overlay — gives every YouTube poster a cohesive look */}
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent" />
+        <div className="absolute inset-0 bg-ink-950/15 transition-opacity duration-700 group-hover:bg-ink-950/0" />
 
-        {/* Badge */}
-        <span className={`absolute right-4 top-4 rounded-full border ${accentBorder} bg-ink-950/60 px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 ${accentText} backdrop-blur-sm`}>
-          {film.badge}
-        </span>
+        {/* Year + genre top */}
+        <div className="absolute inset-x-4 top-4 flex items-center justify-between">
+          <span className={`rounded-full border ${accentBorder} bg-ink-950/60 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-widest2 ${accentText} backdrop-blur-sm md:text-[10px]`}>
+            {film.genre}
+          </span>
+          <span className="font-mono text-[10px] text-white/55">{film.year}</span>
+        </div>
 
         {/* Play badge */}
         <div className="absolute right-4 bottom-4 flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/40 bg-ink-950/40 backdrop-blur-sm transition-all duration-700 group-hover:border-cyan-300 group-hover:bg-cyan-500/20">
@@ -108,7 +137,6 @@ export default function Showreel() {
   const [playing, setPlaying] = useState(false);
   const [open, setOpen] = useState(null);
 
-  // ESC closes lightbox
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === 'Escape' && setOpen(null);
@@ -126,6 +154,8 @@ export default function Showreel() {
       : `https://www.youtube-nocookie.com/embed/${open.videoId}?autoplay=1&rel=0&modestbranding=1`
     : null;
 
+  const heroPoster = `https://i.ytimg.com/vi/${HERO_FILM.videoId}/maxresdefault.jpg`;
+
   return (
     <section id="showreel" ref={ref} className="relative overflow-hidden bg-ink-950 py-32 md:py-40">
       {/* Ambient glows */}
@@ -135,35 +165,47 @@ export default function Showreel() {
         style={{ background: 'radial-gradient(circle, rgba(255,107,53,0.15), transparent 60%)', filter: 'blur(80px)' }} />
 
       <div className="container-x">
-        {/* ===== Header ===== */}
+        {/* ============================================ */}
+        {/* HERO FILM BLOCK — réalisateur, cinéma         */}
+        {/* ============================================ */}
         <motion.div
           initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
           animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
-          className="mb-16 flex flex-col items-center text-center"
+          className="grid items-end gap-8 lg:grid-cols-12 lg:gap-12"
         >
-          <span className="section-eyebrow">Showreel · 2026</span>
-          <h2 className="font-name mt-8 text-5xl font-semibold leading-[0.95] tracking-tight text-white md:text-8xl text-glow-cyan">
-            <span className="block">A film by</span>
-            <span className="block display-strong text-cyan-300 mt-2">J.M. Onana Kono.</span>
-          </h2>
-          <p className="mt-6 max-w-md text-sm text-white/65">
-            Animation 3D, Unreal Engine, character work et direction visuelle — condensés en une séquence.
-          </p>
+          <div className="lg:col-span-7">
+            <span className="section-eyebrow">Featured · A film by</span>
+            <h2 className="font-name mt-8 text-5xl font-semibold leading-[0.95] tracking-tight text-white md:text-8xl text-glow-cyan">
+              <span className="block">A film by</span>
+              <span className="block display-strong text-cyan-300 mt-3">J.M. Onana Kono.</span>
+            </h2>
+          </div>
+          <div className="lg:col-span-5">
+            <p className="text-base leading-relaxed text-white/75 max-w-[50ch]">
+              {HERO_FILM.tagline}. Une signature cinématique construite plan par plan,
+              de la conception au master final.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3 text-[11px] uppercase tracking-widest2 text-white/55 font-mono">
+              <span className="rounded-full border border-cyan-400/30 bg-cyan-500/[0.06] px-3 py-1 text-cyan-300">{HERO_FILM.format}</span>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{HERO_FILM.year}</span>
+              <span className="rounded-full border border-ember-500/30 bg-ember-500/[0.06] px-3 py-1 text-ember-400">{HERO_FILM.role}</span>
+            </div>
+          </div>
         </motion.div>
 
         {/* ===== Main showreel player ===== */}
         <motion.div
           initial={{ opacity: 0, scale: 0.97, filter: 'blur(8px)' }}
           animate={inView ? { opacity: 1, scale: 1, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 1.1, ease: [0.32, 0.72, 0, 1] }}
-          className="bezel relative"
+          transition={{ duration: 1.1, delay: 0.1, ease: [0.32, 0.72, 0, 1] }}
+          className="bezel relative mt-14"
         >
           <div className="bezel-core aspect-video">
             {playing ? (
               <iframe
-                src={`https://www.youtube-nocookie.com/embed/${SHOWREEL_ID}?autoplay=1&rel=0&modestbranding=1`}
-                title="KON'art — Showreel principal"
+                src={`https://www.youtube-nocookie.com/embed/${HERO_FILM.videoId}?autoplay=1&rel=0&modestbranding=1`}
+                title="KON'art — A film by J.M. Onana Kono"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="h-full w-full"
@@ -173,23 +215,25 @@ export default function Showreel() {
                 type="button"
                 onClick={() => setPlaying(true)}
                 className="group relative h-full w-full"
-                aria-label="Lire le showreel"
+                aria-label="Lire le film"
               >
                 <img
-                  src={SHOWREEL_POSTER}
-                  alt="KON'art Showreel"
+                  src={heroPoster}
+                  alt={HERO_FILM.title}
                   className="h-full w-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.04]"
                   loading="lazy"
                 />
+                {/* Cinematic darken */}
+                <div className="absolute inset-0 bg-ink-950/30 transition-opacity duration-700 group-hover:bg-ink-950/10" />
                 <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-black/95 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/95 to-transparent" />
 
                 <div className="absolute top-3 left-3 hidden md:flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.42em] text-white/70">
                   <span className="block h-1.5 w-1.5 rounded-full bg-ember-500 animate-ping-slow" />
-                  <span>Rec · 2026</span>
+                  <span>Rec · {HERO_FILM.year}</span>
                 </div>
                 <div className="absolute top-3 right-3 hidden md:flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.42em] text-white/70">
-                  <span>4K · 24 FPS</span>
+                  <span>{HERO_FILM.format}</span>
                   <span className="text-cyan-400">●</span>
                 </div>
 
@@ -206,9 +250,9 @@ export default function Showreel() {
 
                 <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-6 md:p-9">
                   <div>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.42em] text-cyan-300">Featured · 2026</div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.42em] text-cyan-300">Featured · {HERO_FILM.year}</div>
                     <div className="logo-text mt-2 text-2xl text-white md:text-4xl">SHOWREEL</div>
-                    <div className="mt-1 text-sm text-white/65">Animation 3D · Unreal · Direction visuelle</div>
+                    <div className="mt-1 text-sm text-white/65">{HERO_FILM.tagline}</div>
                   </div>
                 </div>
               </button>
@@ -232,11 +276,13 @@ export default function Showreel() {
           </div>
           <div className="bg-ink-950 p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-cyan-300/70">Année</div>
-            <div className="mt-1 font-mono text-sm text-cyan-300">2026</div>
+            <div className="mt-1 font-mono text-sm text-cyan-300">{HERO_FILM.year}</div>
           </div>
         </div>
 
-        {/* ===== "Plus de films" sub-section ===== */}
+        {/* ============================================ */}
+        {/* SELECTED FILMS — vraie galerie cinéma          */}
+        {/* ============================================ */}
         <div className="mt-32 md:mt-40">
           <motion.div
             initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
@@ -246,20 +292,34 @@ export default function Showreel() {
             className="grid items-end gap-10 lg:grid-cols-12"
           >
             <div className="lg:col-span-7">
-              <span className="section-eyebrow">Films & Réalisations</span>
+              <span className="section-eyebrow">Selected Films</span>
               <h3 className="font-name mt-6 text-4xl font-semibold leading-[0.95] tracking-tight text-white md:text-6xl">
-                Plus de <span className="display-strong text-ember-400">travaux.</span>
+                Cinematics, clips, <span className="display-strong text-ember-400">expérimentations.</span>
               </h3>
             </div>
             <p className="text-base leading-relaxed text-white/70 lg:col-span-5 max-w-[55ch]">
-              Une sélection de films, collaborations clients et tests créatifs — du film de fin d'études MOPA aux contenus rapides et formats sociaux.
+              Cinematics Unreal, brand content, court métrage de fin d'études, expérimentations rapides
+              et formats sociaux — un panel de réalisations récentes.
             </p>
           </motion.div>
 
-          <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {FILMS.map((film, i) => (
+          <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {SELECTED_FILMS.map((film, i) => (
               <FilmCard key={film.id} film={film} index={i} onOpen={setOpen} />
             ))}
+          </div>
+
+          {/* CTA */}
+          <div className="mt-14 flex flex-col items-center gap-4 text-center">
+            <p className="max-w-md text-sm text-white/55">
+              Vous avez un projet de film, clip, brand content ou cinematic Unreal ?
+            </p>
+            <a href="#contact" className="btn-primary">
+              <span className="pl-1">Discutons de votre film</span>
+              <span className="btn-trail">
+                <ArrowUpRight size={14} weight="light" />
+              </span>
+            </a>
           </div>
         </div>
       </div>
@@ -302,7 +362,7 @@ export default function Showreel() {
               </div>
               <div className="mt-6 flex flex-col justify-between gap-3 px-2 md:flex-row md:items-end">
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-widest2 text-cyan-300">{open.subtitle}</div>
+                  <div className="font-mono text-[10px] uppercase tracking-widest2 text-cyan-300">{open.subtitle} · {open.year}</div>
                   <h3 className="mt-2 font-name text-2xl font-semibold text-white md:text-3xl">{open.title}</h3>
                 </div>
                 <p className="max-w-md text-sm text-white/65">{open.desc}</p>

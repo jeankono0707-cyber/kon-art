@@ -1,17 +1,22 @@
 // Portfolio réel — projets ArtStation de Jean Marie Onana Kono.
 // Source : https://www.artstation.com/jeankono
-// Pour ajouter un projet : copiez le permalink + remplacez `small_square` par `large` dans l'URL CDN.
+//
+// Hiérarchie :
+//   - PROJECTS (recent) : 2022 → 2026 — affichés dans la section Portfolio principale
+//   - ARCHIVES        : avant 2022 — affichés dans la section Old Work / Archives (compact)
 
 export const categories = [
-  { id: 'all', label: 'Tout' },
-  { id: 'unreal-vfx', label: 'Unreal · VFX' },
-  { id: 'animation', label: 'Animation 3D' },
-  { id: 'character', label: 'Personnages' },
-  { id: 'environment', label: 'Environnements' },
-  { id: 'teaser', label: 'Teaser' },
+  { id: 'all',          label: 'Tout' },
+  { id: 'unreal-vfx',   label: 'Unreal · VFX' },
+  { id: 'animation',    label: 'Animation 3D' },
+  { id: 'character',    label: 'Personnages' },
+  { id: 'environment',  label: 'Environnements' },
   { id: 'illustration', label: 'Illustration' },
 ];
 
+// ============================================================================
+// PROJETS RÉCENTS (2022 → 2026)
+// ============================================================================
 export const projects = [
   {
     id: 'angle-mort',
@@ -48,20 +53,49 @@ export const projects = [
     type: 'image',
     poster: 'https://cdnb.artstation.com/p/assets/images/images/080/388/929/large/jean-marie-onana-kono-img-20240926-043430.jpg?1727433210',
     artstation: 'https://www.artstation.com/artwork/1Nxv6e',
-    description: "Illustration 2D, composition centrée. Lighting simple et neutre — beauté de la tombée de la nuit.",
+    description: "Illustration 2D, composition centrée. Lighting simple — beauté de la tombée de la nuit.",
     tags: ['Illustration', '2D', 'Lighting'],
   },
+  // === Studio captures personnelles (uploadées dans le repo) ===
+  {
+    id: 'studio-render-2025',
+    title: 'Studio render · 2025',
+    studio: 'Personal piece',
+    category: 'unreal-vfx',
+    year: '2025',
+    type: 'image',
+    poster: '/IMG_20250221_175147.jpg',
+    artstation: 'https://www.artstation.com/jeankono',
+    description: "Capture personnelle d'atelier — recherche visuelle 2025.",
+    tags: ['Personal', 'Lighting'],
+  },
+  {
+    id: 'studio-frame-2024',
+    title: 'Cinematic frame · 2024',
+    studio: 'Composition study',
+    category: 'animation',
+    year: '2024',
+    type: 'image',
+    poster: '/IMG-20240913-WA0019.jpg',
+    artstation: 'https://www.artstation.com/jeankono',
+    description: "Étude de composition cinématographique — frame extrait de production.",
+    tags: ['Composition', 'Cinematic'],
+  },
+];
+
+// ============================================================================
+// ARCHIVES — anciens travaux (avant 2022)
+// Présentation compacte, ambiance documentaire / timeline.
+// ============================================================================
+export const archives = [
   {
     id: 'nocturne',
     title: 'Nocturne',
     studio: 'Character · ZBrush · Arnold',
     category: 'character',
     year: '2021',
-    type: 'image',
     poster: 'https://cdna.artstation.com/p/assets/images/images/040/842/452/large/jean-marie-onana-kono-face2.jpg?1630013790',
     artstation: 'https://www.artstation.com/artwork/NxXLw5',
-    description: "Personnage réaliste — joie et extase. Recherche de la dimension cinématographique.",
-    tags: ['Character', 'ZBrush', 'Arnold', 'Realistic'],
   },
   {
     id: 'bibliotheque',
@@ -69,11 +103,8 @@ export const projects = [
     studio: 'Environment · Lighting',
     category: 'environment',
     year: '2021',
-    type: 'image',
     poster: 'https://cdnb.artstation.com/p/assets/images/images/037/623/483/large/jean-marie-onana-kono-art2.jpg?1620859230',
     artstation: 'https://www.artstation.com/artwork/d8nVrW',
-    description: "Ambiance lumineuse digne d'un film classique. Recherche de lighting et atmosphère.",
-    tags: ['Environment', 'Lighting', 'Cinematic'],
   },
   {
     id: 'personnage-mopa',
@@ -81,11 +112,8 @@ export const projects = [
     studio: 'Concours école',
     category: 'character',
     year: '2021',
-    type: 'image',
     poster: 'https://cdna.artstation.com/p/assets/images/images/037/077/366/large/jean-marie-onana-kono-3d.jpg?1619437154',
     artstation: 'https://www.artstation.com/artwork/B10mG6',
-    description: "Reproduction 3D du personnage fourni par l'école MOPA dans le cadre d'un concours.",
-    tags: ['Character', 'Modeling'],
   },
   {
     id: 'fan-art-dbz',
@@ -93,11 +121,8 @@ export const projects = [
     studio: 'Character study',
     category: 'character',
     year: '2021',
-    type: 'image',
     poster: 'https://cdnb.artstation.com/p/assets/images/images/036/856/483/large/jean-marie-onana-kono-img-20210418-032809-803.jpg?1618829305',
     artstation: 'https://www.artstation.com/artwork/g2QBdZ',
-    description: "Personnage très orgueilleux : Vegeta. Exercice de fidélité au character.",
-    tags: ['Character', 'Fan art'],
   },
   {
     id: 'atelier-germain',
@@ -105,11 +130,8 @@ export const projects = [
     studio: 'Environnement 3D',
     category: 'environment',
     year: '2021',
-    type: 'image',
     poster: 'https://cdna.artstation.com/p/assets/images/images/034/455/518/large/jean-marie-onana-kono-x-img-1612339438583.jpg?1612340051',
     artstation: 'https://www.artstation.com/artwork/AqKDPy',
-    description: "Atelier semblable à un magasin — exercice d'environnement.",
-    tags: ['Environment', 'Modeling'],
   },
   {
     id: 'hopital-ruine',
@@ -117,27 +139,21 @@ export const projects = [
     studio: 'Animation · Environnement',
     category: 'environment',
     year: '2020',
-    type: 'video',
     poster: 'https://cdna.artstation.com/p/assets/video_clips/images/030/269/604/large/jean-marie-onana-kono-thumb.jpg?1600105830',
     artstation: 'https://www.artstation.com/artwork/bKVP3n',
-    description: "Animation d'environnement — hôpital en ruine.",
-    tags: ['Animation', 'Environment'],
   },
   {
     id: 'modelisation-3d',
-    title: 'Couloir d\'hôpital — Modélisation',
+    title: "Couloir d'hôpital — Modélisation",
     studio: 'Environment design',
     category: 'environment',
     year: '2020',
-    type: 'image',
     poster: 'https://cdna.artstation.com/p/assets/images/images/030/244/950/large/jean-marie-onana-kono-img-20200911-wa0070.jpg?1600036086',
     artstation: 'https://www.artstation.com/artwork/VgB3a8',
-    description: "Création d'un environnement 3D : couloir d'un hôpital en ruine.",
-    tags: ['Modeling', 'Environment'],
   },
 ];
 
-/** Compact list for the immersive ScrollTiltedGrid section. */
+/** Compact list for the immersive ScrollTiltedGrid section (recent only). */
 export const tiltedGridItems = projects.map((p) => ({
   id: p.id,
   src: p.poster,

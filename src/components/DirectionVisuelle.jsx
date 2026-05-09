@@ -47,8 +47,9 @@ const PILLARS = [
   },
 ];
 
-/** Galerie de démonstration — vos rendus ArtStation réels qui illustrent ces compétences. */
+/** Galerie de démonstration — vos rendus actuels (ArtStation + nouvelles images repo). */
 const DEMO_GALLERY = [
+  // ANGLE MORT — feature wide
   {
     id: 'angle-mort',
     src: 'https://cdna.artstation.com/p/assets/videos/images/087/574/802/large/jean-marie-onana-kono-maxresdefault.jpg?1746137624',
@@ -57,44 +58,49 @@ const DEMO_GALLERY = [
     href: 'https://www.artstation.com/artwork/8BEVrE',
     span: 'md:col-span-7 md:row-span-2',
   },
+  // Nouvelle image studio 2025 (haute déf)
   {
-    id: 'nocturne',
-    src: 'https://cdna.artstation.com/p/assets/images/images/040/842/452/large/jean-marie-onana-kono-face2.jpg?1630013790',
-    title: 'Nocturne',
+    id: 'studio-render-2025',
+    src: '/IMG_20250221_175147.jpg',
+    title: 'Studio · 2025',
     pillar: 'Intention visuelle',
-    href: 'https://www.artstation.com/artwork/NxXLw5',
+    href: '#portfolio',
     span: 'md:col-span-5',
   },
+  // Mystère
   {
-    id: 'bibliotheque',
-    src: 'https://cdnb.artstation.com/p/assets/images/images/037/623/483/large/jean-marie-onana-kono-art2.jpg?1620859230',
-    title: 'La Bibliothèque',
+    id: 'mystere',
+    src: 'https://cdnb.artstation.com/p/assets/covers/images/079/775/341/large/jean-marie-onana-kono-jean-marie-onana-kono-screenshot-2024-09-08-15-41-04-525-com-whatsapp.jpg?1725803459',
+    title: 'Mystère',
     pillar: "Cohérence d'univers",
-    href: 'https://www.artstation.com/artwork/d8nVrW',
+    href: 'https://www.artstation.com/artwork/AZr58W',
     span: 'md:col-span-5',
   },
+  // Nouvelle image studio 2024
+  {
+    id: 'studio-frame-2024',
+    src: '/IMG-20240913-WA0019.jpg',
+    title: 'Frame · 2024',
+    pillar: 'Cadrage',
+    href: '#portfolio',
+    span: 'md:col-span-4',
+  },
+  // La colère de Fred
   {
     id: 'colere',
     src: 'https://cdnb.artstation.com/p/assets/images/images/080/388/929/large/jean-marie-onana-kono-img-20240926-043430.jpg?1727433210',
     title: 'La colère de Fred',
-    pillar: 'Cadrage',
+    pillar: 'Moodboard',
     href: 'https://www.artstation.com/artwork/1Nxv6e',
     span: 'md:col-span-4',
   },
+  // Image atelier 2022 (composition study)
   {
-    id: 'atelier',
-    src: 'https://cdna.artstation.com/p/assets/images/images/034/455/518/large/jean-marie-onana-kono-x-img-1612339438583.jpg?1612340051',
-    title: "L'atelier de Germain",
-    pillar: 'Moodboard',
-    href: 'https://www.artstation.com/artwork/AqKDPy',
-    span: 'md:col-span-4',
-  },
-  {
-    id: 'hopital',
-    src: 'https://cdna.artstation.com/p/assets/images/images/030/244/950/large/jean-marie-onana-kono-img-20200911-wa0070.jpg?1600036086',
-    title: "Couloir d'hôpital",
-    pillar: 'Ambiance lumineuse',
-    href: 'https://www.artstation.com/artwork/VgB3a8',
+    id: 'studio-atelier-2022',
+    src: '/image_6c0c2c2d-a6d8-48f2-8455-bf8c2db601b720220628_210249.jpg',
+    title: 'Composition study',
+    pillar: "Cohérence d'univers",
+    href: '#portfolio',
     span: 'md:col-span-4',
   },
 ];

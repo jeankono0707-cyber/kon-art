@@ -7,6 +7,7 @@ import Services from './components/Services.jsx';
 import DirectionVisuelle from './components/DirectionVisuelle.jsx';
 import Portfolio from './components/Portfolio.jsx';
 import Showreel from './components/Showreel.jsx';
+import Archives from './components/Archives.jsx';
 import CV from './components/CV.jsx';
 import Skills from './components/Skills.jsx';
 import Contact from './components/Contact.jsx';
@@ -97,6 +98,7 @@ export default function App() {
         <DirectionVisuelle />
         <Portfolio />
         <Showreel />
+        <Archives />
         <CV />
         <Skills />
         <Contact />
