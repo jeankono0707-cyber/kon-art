@@ -15,7 +15,7 @@ const PILLARS = [
     title: 'Moodboard',
     desc: "Recherche de références, palette, ambiance. Le point de départ de toute production cohérente.",
     accent: 'cyan',
-    thumb: '/IMG-20240913-WA0019.jpg', // Snowfall — atmospheric reference
+    thumb: 'https://cdna.artstation.com/p/assets/images/images/040/842/452/large/jean-marie-onana-kono-face2.jpg?1630013790', // Nocturne — character mood reference
   },
   {
     icon: FrameCorners,
