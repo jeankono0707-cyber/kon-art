@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Eye, Lightbulb, Frame, Palette as PaletteIcon, Compass, ArrowUpRight } from '@phosphor-icons/react';
+import { Eye, Lightbulb, FrameCorners, Palette as PaletteIcon, Compass, ArrowUpRight } from '@phosphor-icons/react';
 import { useReveal } from '../hooks/useReveal.js';
 
 /**
@@ -22,7 +22,7 @@ const PILLARS = [
     accent: 'cyan',
   },
   {
-    icon: Frame,
+    icon: FrameCorners,
     title: 'Cadrage',
     desc: "Choix de la composition de chaque plan : plongée, contre-plongée, focale, ratio. Le cadre raconte avant l'image.",
     accent: 'cyan',
