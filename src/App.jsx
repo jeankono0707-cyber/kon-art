@@ -11,6 +11,7 @@ import Archives from './components/Archives.jsx';
 import CV from './components/CV.jsx';
 import Skills from './components/Skills.jsx';
 import Contact from './components/Contact.jsx';
+import Feedback from './components/Feedback.jsx';
 import Footer from './components/Footer.jsx';
 
 export default function App() {
@@ -102,6 +103,7 @@ export default function App() {
         <CV />
         <Skills />
         <Contact />
+        <Feedback />
       </main>
       <Footer />
     </div>

@@ -196,6 +196,21 @@ export default function Showreel() {
       <div aria-hidden className="pointer-events-none absolute -bottom-32 -right-20 h-[600px] w-[600px] rounded-full"
         style={{ background: 'radial-gradient(circle, rgba(255,107,53,0.15), transparent 60%)', filter: 'blur(80px)' }} />
 
+      {/* Ambient atmospheric video — fills the dark empty zones with subtle motion */}
+      <video
+        aria-hidden
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12] mix-blend-screen"
+      >
+        <source src="https://cdn.pixabay.com/video/2017/12/03/13310-246333215_medium.mp4" type="video/mp4" />
+        <source src="https://pixabay.com/fr/videos/download/x-137666_medium.mp4" type="video/mp4" />
+      </video>
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink-950 via-transparent to-ink-950" />
+
       <div className="container-x">
         {/* ============================================ */}
         {/* HERO "A film by" — 3 films alignés            */}
