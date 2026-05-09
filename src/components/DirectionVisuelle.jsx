@@ -22,7 +22,7 @@ const PILLARS = [
     title: 'Cadrage',
     desc: "Choix de la composition de chaque plan : plongée, contre-plongée, focale, ratio. Le cadre raconte avant l'image.",
     accent: 'cyan',
-    thumb: '/IMG_20250221_175147.jpg', // Bar Scene — strong cinematic framing (rule of thirds, depth, color blocking)
+    thumb: '/story.png', // Storyboard — Urban Jungle sequence, real plan-by-plan framing
   },
   {
     icon: Lightbulb,
