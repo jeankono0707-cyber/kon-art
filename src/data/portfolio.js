@@ -64,7 +64,7 @@ export const projects = [
     category: 'illustration',
     year: '2025',
     type: 'image',
-    poster: '/IMG_20250221_175147.jpg',
+    poster: '/FEMME.jpg',
     artstation: 'https://www.artstation.com/jeankono',
     description: "Étude de personnage cinématographique — late-night bar scene, lighting chaud / froid.",
     tags: ['Character', 'Lighting', 'Cinematic'],
