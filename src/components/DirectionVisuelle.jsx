@@ -22,7 +22,7 @@ const PILLARS = [
     title: 'Cadrage',
     desc: "Choix de la composition de chaque plan : plongée, contre-plongée, focale, ratio. Le cadre raconte avant l'image.",
     accent: 'cyan',
-    thumb: 'https://cdna.artstation.com/p/assets/videos/images/087/574/802/large/jean-marie-onana-kono-maxresdefault.jpg?1746137624', // ANGLE MORT — strong cinematography
+    thumb: '/FEMME.jpg', // Composition study — strong framing reference
   },
   {
     icon: Lightbulb,
