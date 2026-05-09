@@ -15,7 +15,7 @@ const PILLARS = [
     title: 'Moodboard',
     desc: "Recherche de références, palette, ambiance. Le point de départ de toute production cohérente.",
     accent: 'cyan',
-    thumb: 'https://cdna.artstation.com/p/assets/images/images/040/842/452/large/jean-marie-onana-kono-face2.jpg?1630013790', // Nocturne — character mood reference
+    thumb: '/IMG_20250221_175147.jpg', // Bar Scene — atmospheric character study (warm/cool palette)
   },
   {
     icon: FrameCorners,
@@ -29,7 +29,7 @@ const PILLARS = [
     title: 'Ambiance lumineuse',
     desc: "Direction d'éclairage cinématographique. Travail sur les contrastes, températures, volumétrie, atmosphère.",
     accent: 'ember',
-    thumb: '/IMG_20250221_175147.jpg', // Bar Scene — warm/cool lighting study
+    thumb: 'https://cdna.artstation.com/p/assets/images/images/040/842/452/large/jean-marie-onana-kono-face2.jpg?1630013790', // Nocturne — strong cinematic face lighting
   },
   {
     icon: Eye,
