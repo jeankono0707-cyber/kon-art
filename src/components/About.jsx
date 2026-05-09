@@ -27,7 +27,7 @@ export default function About() {
           <h2 className="font-name mt-8 text-5xl font-semibold leading-[0.95] tracking-tight text-white md:text-7xl">
             Donner vie aux
             <br />
-            <span className="display-serif ember-text">histoires.</span>
+            <span className="display-strong text-ember-400">histoires.</span>
           </h2>
           <p className="mt-8 max-w-[55ch] text-base leading-relaxed text-white/65">
             Artiste 3D polyvalent, je suis spécialisé en <strong className="font-semibold text-white">animation</strong>,

@@ -49,7 +49,7 @@ export default function Portfolio() {
           <div className="lg:col-span-7">
             <span className="section-eyebrow">Portfolio</span>
             <h2 className="display mt-8 text-5xl text-white md:text-7xl">
-              Sélection de <span className="display-serif cyan-text">travaux.</span>
+              Sélection de <span className="display-strong text-cyan-300">travaux.</span>
             </h2>
           </div>
           <p className="text-base leading-relaxed text-white/70 lg:col-span-5 max-w-[55ch]">
@@ -162,7 +162,7 @@ export default function Portfolio() {
           >
             <span className="section-eyebrow">Galerie immersive</span>
             <h3 className="display mt-8 text-4xl text-white md:text-6xl">
-              Plongée dans <span className="display-serif cyan-text">l'univers.</span>
+              Plongée dans <span className="display-strong text-cyan-300">l'univers.</span>
             </h3>
             <p className="mt-5 max-w-md text-sm text-white/60">
               Une grille 3D qui se redresse au scroll — chaque tuile est un projet réel issu de mon ArtStation.

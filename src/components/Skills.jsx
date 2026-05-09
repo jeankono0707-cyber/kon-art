@@ -22,7 +22,7 @@ export default function Skills() {
           <div className="lg:col-span-7">
             <span className="section-eyebrow">Compétences</span>
             <h2 className="display mt-6 text-5xl text-white md:text-7xl">
-              Outils & <span className="display-serif cyan-text">expertises.</span>
+              Outils & <span className="display-strong text-cyan-300">expertises.</span>
             </h2>
           </div>
           <p className="text-base leading-relaxed text-white/60 lg:col-span-5 max-w-[55ch]">

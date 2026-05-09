@@ -5,6 +5,7 @@ import { List, X, ArrowUpRight } from '@phosphor-icons/react';
 const links = [
   { href: '#about',     label: 'À propos' },
   { href: '#services',  label: 'Services' },
+  { href: '#direction', label: 'Direction' },
   { href: '#portfolio', label: 'Portfolio' },
   { href: '#showreel',  label: 'Showreel' },
   { href: '#cv',        label: 'CV' },

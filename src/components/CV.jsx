@@ -18,7 +18,7 @@ export default function CV() {
           <div className="lg:col-span-7">
             <span className="section-eyebrow">Parcours</span>
             <h2 className="display mt-6 text-5xl text-white md:text-7xl">
-              CV & <span className="display-serif cyan-text">expérience.</span>
+              CV & <span className="display-strong text-cyan-300">expérience.</span>
             </h2>
           </div>
           <div className="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">

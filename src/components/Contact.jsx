@@ -62,7 +62,7 @@ export default function Contact() {
             <h2 className="display mt-6 text-5xl text-white md:text-7xl">
               Travaillons
               <br />
-              <span className="display-serif cyan-text">ensemble.</span>
+              <span className="display-strong text-cyan-300">ensemble.</span>
             </h2>
           </div>
           <p className="text-base leading-relaxed text-white/60 lg:col-span-5 max-w-[55ch]">

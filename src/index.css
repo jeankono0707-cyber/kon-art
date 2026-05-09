@@ -1,30 +1,194 @@
-/* ---- Buttons (button-in-button) ---- */
-.btn-island {
-  @apply relative inline-flex items-center gap-2 rounded-full pl-6 pr-2 py-2 text-sm font-medium;
-  transition: all 0.7s var(--silk);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== Foundation ========== */
+:root {
+  color-scheme: dark;
+  --silk: cubic-bezier(0.32, 0.72, 0, 1);
+  --cinematic: cubic-bezier(0.6, 0.01, 0.05, 0.95);
+  --mx: 50%;
+  --my: 50%;
+}
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
   font-family: 'Space Grotesk', system-ui, sans-serif;
-}
-.btn-island:active { transform: scale(0.98); }
-
-.btn-primary {
-  @apply btn-island bg-white text-ink-950;
-}
-.btn-primary:hover {
-  background: #a4e2ee;
-  box-shadow: 0 10px 40px -10px rgba(93,195,215,0.6);
+  background: #0a1218;
+  color: #fff;
+  overflow-x: hidden;
 }
 
-.btn-ghost {
-  @apply btn-island border border-white/15 bg-white/[0.02] text-white;
-}
-.btn-ghost:hover {
-  border-color: rgba(93,195,215,0.7);
-  background: rgba(93,195,215,0.06);
+::selection { background: rgba(93,195,215,0.4); color: #fff; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #050a0e; }
+::-webkit-scrollbar-thumb { background: linear-gradient(#1d3140, #0f1a22); border-radius: 6px; }
+
+/* ========== Components layer ========== */
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-[1400px] px-6 md:px-10; }
+
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-500/[0.06] px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 text-cyan-300 backdrop-blur-sm;
+  }
+  .section-eyebrow::before {
+    content: '';
+    @apply inline-block h-1 w-1 rounded-full bg-cyan-500;
+    box-shadow: 0 0 10px #5dc3d7;
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+  @keyframes pulse-soft { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* ---- Logo (sci-fi spatial) ---- */
+  .logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .logo-accent { color: #5dc3d7; text-shadow: 0 0 12px rgba(93,195,215,0.5); }
+
+  /* ---- Display & accents ---- */
+  .display {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    @apply font-semibold leading-[0.95] tracking-tight;
+  }
+  .font-name { font-family: 'Bricolage Grotesque', 'Space Grotesk', system-ui, sans-serif; }
+  .display-serif {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  /* Strong display variant — thick, modern, cinematic.
+     Replaces the older Instrument Serif italic for heavier impact. */
+  .display-strong {
+    font-family: 'Bricolage Grotesque', 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+  }
+
+  .cyan-text {
+    background: linear-gradient(135deg, #a4e2ee 0%, #5dc3d7 50%, #2a8aa0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .ember-text {
+    background: linear-gradient(135deg, #ffb088 0%, #ff6b35 50%, #c84545 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-glow-cyan { text-shadow: 0 0 40px rgba(93,195,215,0.45), 0 0 80px rgba(93,195,215,0.18); }
+
+  /* ---- Bezel double-frame ---- */
+  .bezel {
+    @apply rounded-3xl border border-white/[0.07] bg-white/[0.025] p-1.5;
+    backdrop-filter: blur(2px);
+  }
+  .bezel-core {
+    border-radius: calc(1.5rem - 0.375rem);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    @apply relative overflow-hidden bg-ink-900;
+  }
+
+  /* ---- Buttons (button-in-button) ----
+     NOTE : pas d'@apply group (interdit par Tailwind). Le hover sur .btn-trail
+     est géré directement via le sélecteur CSS `.btn-island:hover .btn-trail`. */
+  .btn-island {
+    @apply relative inline-flex items-center gap-2 rounded-full pl-6 pr-2 py-2 text-sm font-medium;
+    transition: all 0.7s var(--silk);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+  .btn-island:active { transform: scale(0.98); }
+
+  .btn-primary {
+    @apply btn-island bg-white text-ink-950;
+  }
+  .btn-primary:hover {
+    background: #a4e2ee;
+    box-shadow: 0 10px 40px -10px rgba(93,195,215,0.6);
+  }
+
+  .btn-ghost {
+    @apply btn-island border border-white/15 bg-white/[0.02] text-white;
+  }
+  .btn-ghost:hover {
+    border-color: rgba(93,195,215,0.7);
+    background: rgba(93,195,215,0.06);
+  }
+
+  .btn-trail {
+    @apply ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/10;
+    transition: transform 0.7s var(--silk);
+  }
+  .btn-ghost .btn-trail { @apply bg-white/10; }
+  .btn-island:hover .btn-trail { transform: translate(2px,-1px) scale(1.06); }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
+  }
+
+  .glass {
+    background: rgba(15, 26, 34, 0.6);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  /* ---- Vertical text ---- */
+  .vertical-text { writing-mode: vertical-rl; transform: rotate(180deg); }
 }
 
-.btn-trail {
-  @apply ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/10;
-  transition: transform 0.7s var(--silk);
+/* ========== Grain (perf-safe — fixed overlay only) ========== */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  animation: grain 1.2s steps(4) infinite;
 }
-.btn-ghost .btn-trail { @apply bg-white/10; }
-.btn-island:hover .btn-trail { transform: translate(2px,-1px) scale(1.06); }
+@keyframes grain {
+  0%,100% { transform: translate(0,0); }
+  25% { transform: translate(-3%,-3%); }
+  50% { transform: translate(2%,-2%); }
+  75% { transform: translate(-2%,2%); }
+}
+
+/* ========== Cursor spotlight ========== */
+.cursor-spot {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 30;
+  background: radial-gradient(circle 380px at var(--mx) var(--my), rgba(93,195,215,0.10), transparent 70%);
+  transition: opacity 0.6s var(--silk);
+}
+
+/* ========== Vignette ========== */
+.vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 65% at 50% 55%, transparent 0%, transparent 35%, rgba(5,10,14,0.55) 100%),
+    linear-gradient(to bottom, rgba(5,10,14,0.10) 0%, transparent 25%, transparent 65%, rgba(10,18,24,0.95) 100%);
+  pointer-events: none;
+}
+
+/* ========== Reduced motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

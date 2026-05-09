@@ -4,6 +4,7 @@ import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Services from './components/Services.jsx';
+import DirectionVisuelle from './components/DirectionVisuelle.jsx';
 import Portfolio from './components/Portfolio.jsx';
 import Showreel from './components/Showreel.jsx';
 import CV from './components/CV.jsx';
@@ -93,6 +94,7 @@ export default function App() {
         <Hero />
         <About />
         <Services />
+        <DirectionVisuelle />
         <Portfolio />
         <Showreel />
         <CV />
