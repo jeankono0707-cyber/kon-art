@@ -5,13 +5,8 @@ import { useReveal } from '../hooks/useReveal.js';
 /**
  * Direction Visuelle / Storyboard / Préproduction
  *
- * Cette section explique concrètement les compétences "soft" :
- * moodboard, cadrage, ambiance lumineuse, composition, intention,
- * cohérence d'univers — illustrées par les vraies œuvres ArtStation.
- *
- * Laissez les `image` placeholders pour les visuels Drive à venir :
- * remplacez l'URL de chaque slot quand vous aurez exporté le fichier
- * dans /public/storyboard/ (suggestion).
+ * 5 piliers illustrés par des miniatures concrètes (rendus + images repo),
+ * puis galerie "cas d'école" en grille uniforme bien proportionnée.
  */
 
 const PILLARS = [
@@ -20,88 +15,81 @@ const PILLARS = [
     title: 'Moodboard',
     desc: "Recherche de références, palette, ambiance. Le point de départ de toute production cohérente.",
     accent: 'cyan',
+    thumb: '/IMG-20240913-WA0019.jpg', // Snowfall — atmospheric reference
   },
   {
     icon: FrameCorners,
     title: 'Cadrage',
     desc: "Choix de la composition de chaque plan : plongée, contre-plongée, focale, ratio. Le cadre raconte avant l'image.",
     accent: 'cyan',
+    thumb: 'https://cdna.artstation.com/p/assets/videos/images/087/574/802/large/jean-marie-onana-kono-maxresdefault.jpg?1746137624', // ANGLE MORT — strong cinematography
   },
   {
     icon: Lightbulb,
     title: 'Ambiance lumineuse',
     desc: "Direction d'éclairage cinématographique. Travail sur les contrastes, températures, volumétrie, atmosphère.",
     accent: 'ember',
+    thumb: '/IMG_20250221_175147.jpg', // Bar Scene — warm/cool lighting study
   },
   {
     icon: Eye,
     title: 'Intention visuelle',
     desc: "Pourquoi cette image existe : ce qu'elle doit transmettre, faire ressentir, évoquer.",
     accent: 'ember',
+    thumb: 'https://cdnb.artstation.com/p/assets/images/images/080/388/929/large/jean-marie-onana-kono-img-20240926-043430.jpg?1727433210', // La colère de Fred — strong emotional intent
   },
   {
     icon: PaletteIcon,
     title: "Cohérence d'univers",
     desc: "Garantir que chaque plan, chaque détail appartient au même monde. Vision globale du premier au dernier frame.",
     accent: 'cyan',
+    thumb: 'https://cdnb.artstation.com/p/assets/covers/images/079/775/341/large/jean-marie-onana-kono-jean-marie-onana-kono-screenshot-2024-09-08-15-41-04-525-com-whatsapp.jpg?1725803459', // Mystère — full universe
   },
 ];
 
-/** Galerie de démonstration — vos rendus actuels (ArtStation + nouvelles images repo). */
+/** Galerie "cas d'école" — grille uniforme 3×2 sans row-span, proportions clean. */
 const DEMO_GALLERY = [
-  // ANGLE MORT — feature wide
   {
     id: 'angle-mort',
     src: 'https://cdna.artstation.com/p/assets/videos/images/087/574/802/large/jean-marie-onana-kono-maxresdefault.jpg?1746137624',
     title: 'ANGLE MORT',
     pillar: 'Ambiance lumineuse',
     href: 'https://www.artstation.com/artwork/8BEVrE',
-    span: 'md:col-span-7 md:row-span-2',
   },
-  // Nouvelle image studio 2025 (haute déf)
   {
-    id: 'studio-render-2025',
-    src: '/IMG_20250221_175147.jpg',
-    title: 'Studio · 2025',
-    pillar: 'Intention visuelle',
-    href: '#portfolio',
-    span: 'md:col-span-5',
-  },
-  // Mystère
-  {
-    id: 'mystere',
+    id: 'mystere-case',
     src: 'https://cdnb.artstation.com/p/assets/covers/images/079/775/341/large/jean-marie-onana-kono-jean-marie-onana-kono-screenshot-2024-09-08-15-41-04-525-com-whatsapp.jpg?1725803459',
     title: 'Mystère',
     pillar: "Cohérence d'univers",
     href: 'https://www.artstation.com/artwork/AZr58W',
-    span: 'md:col-span-5',
   },
-  // Nouvelle image studio 2024
-  {
-    id: 'studio-frame-2024',
-    src: '/IMG-20240913-WA0019.jpg',
-    title: 'Frame · 2024',
-    pillar: 'Cadrage',
-    href: '#portfolio',
-    span: 'md:col-span-4',
-  },
-  // La colère de Fred
   {
     id: 'colere',
     src: 'https://cdnb.artstation.com/p/assets/images/images/080/388/929/large/jean-marie-onana-kono-img-20240926-043430.jpg?1727433210',
     title: 'La colère de Fred',
-    pillar: 'Moodboard',
+    pillar: 'Intention visuelle',
     href: 'https://www.artstation.com/artwork/1Nxv6e',
-    span: 'md:col-span-4',
   },
-  // Image atelier 2022 (composition study)
   {
-    id: 'studio-atelier-2022',
-    src: '/image_6c0c2c2d-a6d8-48f2-8455-bf8c2db601b720220628_210249.jpg',
-    title: 'Composition study',
-    pillar: "Cohérence d'univers",
+    id: 'bar-scene',
+    src: '/IMG_20250221_175147.jpg',
+    title: 'Bar Scene',
+    pillar: 'Ambiance lumineuse',
     href: '#portfolio',
-    span: 'md:col-span-4',
+  },
+  {
+    id: 'snowfall',
+    src: '/IMG-20240913-WA0019.jpg',
+    title: 'Snowfall',
+    pillar: 'Moodboard',
+    href: '#portfolio',
+  },
+  {
+    id: 'bibliotheque',
+    src: 'https://cdnb.artstation.com/p/assets/images/images/037/623/483/large/jean-marie-onana-kono-art2.jpg?1620859230',
+    title: 'La Bibliothèque',
+    pillar: 'Cadrage',
+    href: 'https://www.artstation.com/artwork/d8nVrW',
   },
 ];
 
@@ -137,30 +125,47 @@ export default function DirectionVisuelle() {
           </p>
         </motion.div>
 
-        {/* ===== Pillars ===== */}
-        <div className="mt-20 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.04] md:grid-cols-5">
+        {/* ===== Pillars (avec miniatures) ===== */}
+        <div className="mt-20 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.04] sm:grid-cols-2 lg:grid-cols-5">
           {PILLARS.map((p, i) => {
             const Icon = p.icon;
             const accentText = p.accent === 'ember' ? 'text-ember-400' : 'text-cyan-300';
+            const accentBorder = p.accent === 'ember' ? 'border-ember-500/40' : 'border-cyan-400/40';
             return (
               <motion.div
                 key={p.title}
                 initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
                 animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
                 transition={{ duration: 0.7, delay: i * 0.06, ease: [0.32, 0.72, 0, 1] }}
-                className="group relative bg-ink-900 p-7 transition-colors duration-700 hover:bg-ink-800"
+                className="group relative overflow-hidden bg-ink-900 transition-colors duration-700 hover:bg-ink-800"
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-all duration-700 group-hover:border-cyan-500/40">
-                  <Icon size={22} weight="light" className={accentText} />
+                {/* Thumbnail at top — small banner that illustrates the pillar */}
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={p.thumb}
+                    alt={p.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-all duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.06] group-hover:saturate-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/40 to-transparent" />
+
+                  {/* Floating icon badge top-right of thumb */}
+                  <div className={`absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border ${accentBorder} bg-ink-950/70 backdrop-blur-sm`}>
+                    <Icon size={16} weight="light" className={accentText} />
+                  </div>
                 </div>
-                <h3 className="mt-6 font-name text-xl font-semibold text-white">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/65">{p.desc}</p>
+
+                {/* Text */}
+                <div className="p-7">
+                  <h3 className="font-name text-xl font-semibold text-white">{p.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-white/65">{p.desc}</p>
+                </div>
               </motion.div>
             );
           })}
         </div>
 
-        {/* ===== Galerie de démonstration — vos vrais rendus ===== */}
+        {/* ===== Galerie cas d'école — grille uniforme 3×2 ===== */}
         <motion.div
           initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -176,30 +181,31 @@ export default function DirectionVisuelle() {
               </h3>
             </div>
             <p className="max-w-md text-sm text-white/60">
-              Chaque image illustre une compétence concrète de direction visuelle. Cliquez pour voir le projet complet.
+              Six images, six compétences concrètes de direction visuelle.
             </p>
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-6">
+        {/* Grille uniforme — 1 / 2 / 3 colonnes selon viewport, aspect-[4/5] partout */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
           {DEMO_GALLERY.map((item, i) => (
             <motion.a
               key={item.id}
               href={item.href}
-              target="_blank"
-              rel="noreferrer"
+              target={item.href.startsWith('http') ? '_blank' : undefined}
+              rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
               initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: i * 0.05, ease: [0.32, 0.72, 0, 1] }}
-              className={`bezel group block ${item.span}`}
+              className="bezel group block"
             >
-              <div className="bezel-core aspect-[4/5] md:aspect-auto md:h-full md:min-h-[280px]">
+              <div className="bezel-core aspect-[4/5]">
                 <img
                   src={item.src}
                   alt={item.title}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.05]"
+                  className="h-full w-full object-cover transition-all duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.05] group-hover:saturate-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/30 to-transparent" />
 

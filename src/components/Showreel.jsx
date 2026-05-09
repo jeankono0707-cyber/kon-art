@@ -3,18 +3,47 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X, ArrowUpRight } from '@phosphor-icons/react';
 import { useReveal } from '../hooks/useReveal.js';
 
-// === Hero "A film by" — éditorial, image cinéma, AUCUN player vidéo
-const HERO_FILM = {
-  title: 'A film by J.M. Onana Kono',
-  tagline: 'Animation 3D · Direction visuelle · Storytelling',
-  year: '2026',
-  role: 'Director · 3D Generalist',
-  format: '16:9 · 4K',
-  // Image éditoriale (Mystère — court métrage, ambiance cinéma marshland)
-  poster: 'https://cdnb.artstation.com/p/assets/covers/images/079/775/341/large/jean-marie-onana-kono-jean-marie-onana-kono-screenshot-2024-09-08-15-41-04-525-com-whatsapp.jpg?1725803459',
-};
+// === "A film by" — 3 films alignés (les 3 plus importants)
+const HERO_FILMS = [
+  {
+    id: 'who-uucewzxnoss',
+    title: 'WHO...',
+    subtitle: 'Latest · 2026',
+    desc: "Travail le plus récent — direction visuelle, animation et lighting cinématographique.",
+    type: 'youtube',
+    videoId: 'uUCeWzxNOss',
+    aspect: 'aspect-video',
+    year: '2026',
+    genre: 'Latest',
+    accent: 'cyan',
+  },
+  {
+    id: 'angle-mort-film',
+    title: 'ANGLE MORT',
+    subtitle: 'Unreal Engine · Niagara FX',
+    desc: 'Effets sous-marins sous Unreal Engine — animation, design et lighting.',
+    type: 'youtube',
+    videoId: 'Nfov-XbEgww',
+    aspect: 'aspect-video',
+    year: '2025',
+    genre: 'Unreal cinematic',
+    accent: 'cyan',
+  },
+  {
+    id: 'mystere-film',
+    title: 'Mystère',
+    subtitle: 'Court métrage 3D',
+    desc: 'Court métrage mettant en scène les mystères de la vie dans une nature calme et féerique.',
+    type: 'youtube',
+    videoId: 'abEKVlGuHPM',
+    aspect: 'aspect-video',
+    year: '2024',
+    genre: 'Short film',
+    accent: 'ember',
+  },
+];
 
-// === Selected Films — la galerie. Le showreel vit ici (pas dans le hero).
+// === Selected Films — autres réalisations (pas de doublon avec les 3 ci-dessus)
 const SELECTED_FILMS = [
   {
     id: 'showreel-2026',
@@ -27,20 +56,7 @@ const SELECTED_FILMS = [
     year: '2026',
     genre: 'Showreel',
     accent: 'cyan',
-    featured: true, // wide card
-  },
-  {
-    id: 'mystere',
-    title: 'Mystère',
-    subtitle: 'Court métrage 3D · Réalisation',
-    desc: "Court métrage mettant en scène les mystères de la vie dans une nature calme et féerique.",
-    type: 'youtube',
-    videoId: 'abEKVlGuHPM',
-    aspect: 'aspect-video',
-    year: '2024',
-    genre: 'Short film',
-    accent: 'cyan',
-    featured: true, // wide card
+    featured: true,
   },
   {
     id: 'film-cinematic',
@@ -104,7 +120,7 @@ const SELECTED_FILMS = [
   },
 ];
 
-function FilmCard({ film, onOpen, index }) {
+function FilmCard({ film, onOpen, index, large }) {
   const isVertical = film.aspect.includes('9/16');
   const accentText = film.accent === 'ember' ? 'text-ember-400' : 'text-cyan-300';
   const accentBorder = film.accent === 'ember' ? 'border-ember-500/40' : 'border-cyan-400/40';
@@ -133,6 +149,14 @@ function FilmCard({ film, onOpen, index }) {
         <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent" />
         <div className="absolute inset-0 bg-ink-950/15 transition-opacity duration-700 group-hover:bg-ink-950/0" />
 
+        {/* Cinema bars on the wide hero cards for film feel */}
+        {large && (
+          <>
+            <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-black/90 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/90 to-transparent" />
+          </>
+        )}
+
         <div className="absolute inset-x-4 top-4 flex items-center justify-between">
           <span className={`rounded-full border ${accentBorder} bg-ink-950/60 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-widest2 ${accentText} backdrop-blur-sm md:text-[10px]`}>
             {film.genre}
@@ -146,7 +170,9 @@ function FilmCard({ film, onOpen, index }) {
 
         <div className={`absolute inset-x-5 ${isVertical ? 'bottom-20' : 'bottom-6'}`}>
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${accentText}`}>{film.subtitle}</div>
-          <h4 className={`mt-2 font-name font-semibold text-white ${film.featured ? 'text-2xl md:text-3xl' : 'text-lg md:text-xl'}`}>{film.title}</h4>
+          <h4 className={`mt-2 font-name font-semibold text-white ${large ? 'text-2xl md:text-3xl' : film.featured ? 'text-2xl md:text-3xl' : 'text-lg md:text-xl'}`}>
+            {film.title}
+          </h4>
         </div>
       </div>
     </motion.button>
@@ -184,7 +210,7 @@ export default function Showreel() {
 
       <div className="container-x">
         {/* ============================================ */}
-        {/* HERO "A film by" — ÉDITORIAL, AUCUN PLAYER  */}
+        {/* HERO "A film by" — 3 films alignés            */}
         {/* ============================================ */}
         <motion.div
           initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
@@ -201,65 +227,27 @@ export default function Showreel() {
           </div>
           <div className="lg:col-span-5">
             <p className="text-base leading-relaxed text-white/75 max-w-[50ch]">
-              {HERO_FILM.tagline}. Une signature cinématique construite plan par plan,
-              de la conception au master final.
+              Animation 3D · Direction visuelle · Storytelling. Trois films représentatifs —
+              du travail le plus récent au court métrage personnel.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-[11px] uppercase tracking-widest2 text-white/55 font-mono">
-              <span className="rounded-full border border-cyan-400/30 bg-cyan-500/[0.06] px-3 py-1 text-cyan-300">{HERO_FILM.format}</span>
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{HERO_FILM.year}</span>
-              <span className="rounded-full border border-ember-500/30 bg-ember-500/[0.06] px-3 py-1 text-ember-400">{HERO_FILM.role}</span>
+              <span className="rounded-full border border-cyan-400/30 bg-cyan-500/[0.06] px-3 py-1 text-cyan-300">3 Films</span>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">2024 → 2026</span>
+              <span className="rounded-full border border-ember-500/30 bg-ember-500/[0.06] px-3 py-1 text-ember-400">Director · 3D Generalist</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Image éditoriale (PAS un player) — visuel cinéma pleine largeur */}
+        {/* 3-card hero grid — Who / ANGLE MORT / Mystère */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98, filter: 'blur(8px)' }}
           animate={inView ? { opacity: 1, scale: 1, filter: 'blur(0px)' } : {}}
           transition={{ duration: 1.1, delay: 0.1, ease: [0.32, 0.72, 0, 1] }}
-          className="bezel relative mt-14"
+          className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-5 lg:gap-6"
         >
-          <div className="bezel-core aspect-[21/9]">
-            <img
-              src={HERO_FILM.poster}
-              alt="A film by Jean Marie Onana Kono"
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
-            {/* Cinema bars + grain feel */}
-            <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-black/95 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/95 to-transparent" />
-            <div className="absolute inset-0 bg-ink-950/15" />
-
-            {/* Cinema marks */}
-            <div className="absolute top-3 left-3 hidden md:flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.42em] text-white/70">
-              <span className="block h-1.5 w-1.5 rounded-full bg-ember-500 animate-ping-slow" />
-              <span>Featured · {HERO_FILM.year}</span>
-            </div>
-            <div className="absolute top-3 right-3 hidden md:flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.42em] text-white/70">
-              <span>{HERO_FILM.format}</span>
-              <span className="text-cyan-400">●</span>
-            </div>
-
-            {/* Quote / film-by overlay center */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-              <div className="font-mono text-[10px] uppercase tracking-[0.42em] text-cyan-300/80">A film by</div>
-              <div className="logo-text mt-3 text-2xl text-white md:text-4xl">J.M. ONANA KONO</div>
-              <div className="mt-3 h-px w-16 bg-cyan-400/60" />
-              <div className="mt-3 font-mono text-[10px] uppercase tracking-[0.32em] text-white/55">{HERO_FILM.role}</div>
-            </div>
-
-            {/* Bottom info */}
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-6 md:p-9">
-              <a href="#showreel-films" className="flex items-center gap-2 text-[11px] uppercase tracking-widest2 text-white/65 transition-colors hover:text-cyan-300">
-                <span>Voir les films</span>
-                <ArrowUpRight size={14} weight="light" />
-              </a>
-              <div className="hidden md:block font-mono text-[10px] uppercase tracking-[0.42em] text-white/45">
-                Reel · Cinematics · Brand · Short film
-              </div>
-            </div>
-          </div>
+          {HERO_FILMS.map((film, i) => (
+            <FilmCard key={film.id} film={film} index={i} onOpen={setOpen} large />
+          ))}
         </motion.div>
 
         {/* Metadata strip */}
@@ -278,12 +266,12 @@ export default function Showreel() {
           </div>
           <div className="bg-ink-950 p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-cyan-300/70">Année</div>
-            <div className="mt-1 font-mono text-sm text-cyan-300">{HERO_FILM.year}</div>
+            <div className="mt-1 font-mono text-sm text-cyan-300">2026</div>
           </div>
         </div>
 
         {/* ============================================ */}
-        {/* SELECTED FILMS                                */}
+        {/* SELECTED FILMS — gallery (sans doublons)      */}
         {/* ============================================ */}
         <div id="showreel-films" className="mt-32 md:mt-40">
           <motion.div
@@ -300,8 +288,8 @@ export default function Showreel() {
               </h3>
             </div>
             <p className="text-base leading-relaxed text-white/70 lg:col-span-5 max-w-[55ch]">
-              Mon showreel actuel, court métrages, brand content et expérimentations rapides.
-              Cliquez pour lancer la lecture en plein écran.
+              Mon showreel actuel, brand content, court métrage de fin d'études, expérimentations rapides
+              et formats sociaux. Cliquez pour lancer la lecture en plein écran.
             </p>
           </motion.div>
 
