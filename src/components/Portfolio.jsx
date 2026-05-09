@@ -1,9 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X, ArrowUpRight } from '@phosphor-icons/react';
-import { categories, projects, tiltedGridItems } from '../data/portfolio.js';
+import { categories, projects } from '../data/portfolio.js';
 import { useReveal } from '../hooks/useReveal.js';
-import { ScrollTiltedGrid } from './ui/scroll-tilted-grid.tsx';
 
 export default function Portfolio() {
   const [active, setActive] = useState('all');
@@ -152,25 +151,6 @@ export default function Portfolio() {
         </div>
 
         {/* Immersive ScrollTiltedGrid section */}
-        <div className="mt-32 md:mt-40">
-          <motion.div
-            initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
-            className="mb-14 flex flex-col items-center text-center"
-          >
-            <span className="section-eyebrow">Galerie immersive</span>
-            <h3 className="display mt-8 text-4xl text-white md:text-6xl">
-              Plongée dans <span className="display-strong text-cyan-300">l'univers.</span>
-            </h3>
-            <p className="mt-5 max-w-md text-sm text-white/60">
-              Une grille 3D qui se redresse au scroll — chaque tuile est un projet réel issu de mon ArtStation.
-            </p>
-          </motion.div>
-
-          <ScrollTiltedGrid items={tiltedGridItems} rotateAmount={20} scaleAmount={0.9} />
-        </div>
       </div>
 
       {/* YouTube lightbox */}
