@@ -47,52 +47,6 @@ const PILLARS = [
   },
 ];
 
-/** Galerie "cas d'école" — grille uniforme 3×2 sans row-span, proportions clean. */
-const DEMO_GALLERY = [
-  {
-    id: 'angle-mort',
-    src: 'https://cdna.artstation.com/p/assets/videos/images/087/574/802/large/jean-marie-onana-kono-maxresdefault.jpg?1746137624',
-    title: 'ANGLE MORT',
-    pillar: 'Ambiance lumineuse',
-    href: 'https://www.artstation.com/artwork/8BEVrE',
-  },
-  {
-    id: 'mystere-case',
-    src: 'https://cdnb.artstation.com/p/assets/covers/images/079/775/341/large/jean-marie-onana-kono-jean-marie-onana-kono-screenshot-2024-09-08-15-41-04-525-com-whatsapp.jpg?1725803459',
-    title: 'Mystère',
-    pillar: "Cohérence d'univers",
-    href: 'https://www.artstation.com/artwork/AZr58W',
-  },
-  {
-    id: 'colere',
-    src: 'https://cdnb.artstation.com/p/assets/images/images/080/388/929/large/jean-marie-onana-kono-img-20240926-043430.jpg?1727433210',
-    title: 'La colère de Fred',
-    pillar: 'Intention visuelle',
-    href: 'https://www.artstation.com/artwork/1Nxv6e',
-  },
-  {
-    id: 'bar-scene',
-    src: '/IMG_20250221_175147.jpg',
-    title: 'Bar Scene',
-    pillar: 'Ambiance lumineuse',
-    href: '#portfolio',
-  },
-  {
-    id: 'snowfall',
-    src: '/IMG-20240913-WA0019.jpg',
-    title: 'Snowfall',
-    pillar: 'Moodboard',
-    href: '#portfolio',
-  },
-  {
-    id: 'bibliotheque',
-    src: 'https://cdnb.artstation.com/p/assets/images/images/037/623/483/large/jean-marie-onana-kono-art2.jpg?1620859230',
-    title: 'La Bibliothèque',
-    pillar: 'Cadrage',
-    href: 'https://www.artstation.com/artwork/d8nVrW',
-  },
-];
-
 export default function DirectionVisuelle() {
   const [ref, inView] = useReveal();
 
@@ -163,66 +117,6 @@ export default function DirectionVisuelle() {
               </motion.div>
             );
           })}
-        </div>
-
-        {/* ===== Galerie cas d'école — grille uniforme 3×2 ===== */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
-          className="mt-20 mb-10"
-        >
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-cyan-300/70">Démonstrations</div>
-              <h3 className="mt-3 font-name text-3xl font-semibold leading-[1] tracking-tight text-white md:text-4xl">
-                Mes rendus comme <span className="display-strong text-ember-400">cas d'école.</span>
-              </h3>
-            </div>
-            <p className="max-w-md text-sm text-white/60">
-              Six images, six compétences concrètes de direction visuelle.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Grille uniforme — 1 / 2 / 3 colonnes selon viewport, aspect-[4/5] partout */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
-          {DEMO_GALLERY.map((item, i) => (
-            <motion.a
-              key={item.id}
-              href={item.href}
-              target={item.href.startsWith('http') ? '_blank' : undefined}
-              rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
-              initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8, delay: i * 0.05, ease: [0.32, 0.72, 0, 1] }}
-              className="bezel group block"
-            >
-              <div className="bezel-core aspect-[4/5]">
-                <img
-                  src={item.src}
-                  alt={item.title}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-all duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.05] group-hover:saturate-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/30 to-transparent" />
-
-                <span className="absolute right-4 top-4 rounded-full border border-cyan-400/40 bg-ink-950/60 px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 text-cyan-300 backdrop-blur-sm">
-                  {item.pillar}
-                </span>
-
-                <div className="absolute inset-x-5 bottom-5">
-                  <div className="font-mono text-[10px] uppercase tracking-widest2 text-cyan-300/70">Cas d'étude</div>
-                  <div className="mt-1 flex items-end justify-between gap-3">
-                    <h4 className="font-name text-lg font-semibold text-white md:text-xl">{item.title}</h4>
-                    <ArrowUpRight size={16} weight="light" className="shrink-0 text-white/55 transition-all duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cyan-300" />
-                  </div>
-                </div>
-              </div>
-            </motion.a>
-          ))}
         </div>
 
         {/* ===== Note storyboard ===== */}
