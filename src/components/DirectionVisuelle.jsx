@@ -15,7 +15,7 @@ const PILLARS = [
     title: 'Moodboard',
     desc: "Recherche de références, palette, ambiance. Le point de départ de toute production cohérente.",
     accent: 'cyan',
-    thumb: '/IMG_20250221_175147.jpg', // Bar Scene — atmospheric character study (warm/cool palette)
+    thumb: '/moodboard.png', // Character design moodboard (turnarounds + expressions + silhouettes)
   },
   {
     icon: FrameCorners,
