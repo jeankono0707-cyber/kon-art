@@ -5,6 +5,7 @@ import {
   PaperPlaneTilt, CheckCircle, ChatCircleDots, ArrowUpRight, Palette, LinkedinLogo,
 } from '@phosphor-icons/react';
 import { useReveal } from '../hooks/useReveal.js';
+import { TextScramble } from './ui/text-scramble.tsx';
 
 const PHONE = '+33 7 66 80 79 25';
 const PHONE_RAW = '+33766807925';
@@ -60,9 +61,9 @@ export default function Contact() {
           <div className="lg:col-span-7">
             <span className="section-eyebrow">Contact</span>
             <h2 className="display mt-6 text-5xl text-white md:text-7xl">
-              Travaillons
+              <TextScramble text="Travaillons" />
               <br />
-              <span className="display-strong text-cyan-300">ensemble.</span>
+              <TextScramble text="ensemble." className="display-strong text-cyan-300" />
             </h2>
           </div>
           <p className="text-base leading-relaxed text-white/60 lg:col-span-5 max-w-[55ch]">

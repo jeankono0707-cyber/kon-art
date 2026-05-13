@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { ArrowUpRight, Play } from '@phosphor-icons/react';
+import { TextScramble } from './ui/text-scramble.tsx';
 
 const HERO_BG = 'https://cdna.artstation.com/p/assets/videos/images/087/574/802/4k/jean-marie-onana-kono-maxresdefault.jpg?1746137624';
 const ARTSTATION_URL = 'https://www.artstation.com/jeankono';
@@ -181,7 +182,7 @@ export default function Hero() {
               transition={{ duration: 1.1, delay: 1.55 + i * 0.18, ease: [0.32, 0.72, 0, 1] }}
               className="block overflow-hidden"
             >
-              <span className={line.accent ? 'cyan-text' : ''}>{line.text}</span>
+              <TextScramble text={line.text} className={line.accent ? 'cyan-text' : ''} />
             </motion.span>
           ))}
         </h1>

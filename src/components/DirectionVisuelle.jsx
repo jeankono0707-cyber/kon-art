@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Eye, Lightbulb, FrameCorners, Palette as PaletteIcon, Compass, ArrowUpRight } from '@phosphor-icons/react';
 import { useReveal } from '../hooks/useReveal.js';
+import { TextScramble } from './ui/text-scramble.tsx';
 
 /**
  * Direction Visuelle / Storyboard / Préproduction
@@ -67,9 +68,9 @@ export default function DirectionVisuelle() {
           <div className="lg:col-span-7">
             <span className="section-eyebrow">Direction visuelle · Préproduction</span>
             <h2 className="font-name mt-8 text-5xl font-semibold leading-[0.95] tracking-tight text-white md:text-7xl">
-              Construire avant
+              <TextScramble text="Construire avant" />
               <br />
-              <span className="display-strong text-cyan-300">de produire.</span>
+              <TextScramble text="de produire." className="display-strong text-cyan-300" />
             </h2>
           </div>
           <p className="text-base leading-relaxed text-white/70 lg:col-span-5 max-w-[55ch]">
@@ -131,7 +132,7 @@ export default function DirectionVisuelle() {
             <div className="md:col-span-7">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-cyan-300">Storyboard · Préproduction</div>
               <h3 className="mt-3 font-name text-3xl font-semibold leading-[1.05] tracking-tight text-white md:text-4xl">
-                Je ne fais pas seulement <span className="display-strong text-ember-400">de belles images.</span>
+                <TextScramble text="Je ne fais pas seulement" /> <TextScramble text="de belles images." className="display-strong text-ember-400" />
               </h3>
               <p className="mt-5 max-w-[55ch] text-base leading-relaxed text-white/75">
                 Mon expérience de <strong className="text-white">Storyboard Artist chez REC'IM</strong> et

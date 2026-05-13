@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X, ArrowUpRight } from '@phosphor-icons/react';
 import { categories, projects } from '../data/portfolio.js';
 import { useReveal } from '../hooks/useReveal.js';
+import { TextScramble } from './ui/text-scramble.tsx';
 
 export default function Portfolio() {
   const [active, setActive] = useState('all');
@@ -48,7 +49,7 @@ export default function Portfolio() {
           <div className="lg:col-span-7">
             <span className="section-eyebrow">Portfolio</span>
             <h2 className="display mt-8 text-5xl text-white md:text-7xl">
-              Sélection de <span className="display-strong text-cyan-300">travaux.</span>
+              <TextScramble text="Sélection de" /> <TextScramble text="travaux." className="display-strong text-cyan-300" />
             </h2>
           </div>
           <p className="text-base leading-relaxed text-white/70 lg:col-span-5 max-w-[55ch]">

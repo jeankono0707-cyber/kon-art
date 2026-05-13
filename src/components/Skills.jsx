@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useReveal } from '../hooks/useReveal.js';
 import { softwareSkills, expertise } from '../data/skills.js';
+import { TextScramble } from './ui/text-scramble.tsx';
 
 export default function Skills() {
   const [ref, inView] = useReveal();
@@ -22,7 +23,7 @@ export default function Skills() {
           <div className="lg:col-span-7">
             <span className="section-eyebrow">Compétences</span>
             <h2 className="display mt-6 text-5xl text-white md:text-7xl">
-              Outils & <span className="display-strong text-cyan-300">expertises.</span>
+              <TextScramble text="Outils &" /> <TextScramble text="expertises." className="display-strong text-cyan-300" />
             </h2>
           </div>
           <p className="text-base leading-relaxed text-white/60 lg:col-span-5 max-w-[55ch]">

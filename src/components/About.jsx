@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useReveal } from '../hooks/useReveal.js';
+import { TextScramble } from './ui/text-scramble.tsx';
 
 const stats = [
   { num: '5+', label: 'Années en production' },
@@ -25,9 +26,9 @@ export default function About() {
         >
           <span className="section-eyebrow">À propos</span>
           <h2 className="font-name mt-8 text-5xl font-semibold leading-[0.95] tracking-tight text-white md:text-7xl">
-            Donner vie aux
+            <TextScramble text="Donner vie aux" />
             <br />
-            <span className="display-strong text-ember-400">histoires.</span>
+            <TextScramble text="histoires." className="display-strong text-ember-400" />
           </h2>
           <p className="mt-8 max-w-[55ch] text-base leading-relaxed text-white/65">
             Artiste 3D polyvalent, je suis spécialisé en <strong className="font-semibold text-white">animation</strong>,

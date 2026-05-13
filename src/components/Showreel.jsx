@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X, ArrowUpRight } from '@phosphor-icons/react';
 import { useReveal } from '../hooks/useReveal.js';
+import { TextScramble } from './ui/text-scramble.tsx';
 
 // === "A film by" — 3 films alignés (les 3 plus importants)
 const HERO_FILMS = [
@@ -224,8 +225,8 @@ export default function Showreel() {
           <div className="lg:col-span-7">
             <span className="section-eyebrow">Featured · A film by</span>
             <h2 className="font-name mt-8 text-5xl font-semibold leading-[0.95] tracking-tight text-white md:text-8xl text-glow-cyan">
-              <span className="block">A film by</span>
-              <span className="block display-strong text-cyan-300 mt-3">J.M. Onana Kono.</span>
+              <span className="block"><TextScramble text="A film by" /></span>
+              <span className="block mt-3"><TextScramble text="J.M. Onana Kono." className="display-strong text-cyan-300" /></span>
             </h2>
           </div>
           <div className="lg:col-span-5">
@@ -287,7 +288,7 @@ export default function Showreel() {
             <div className="lg:col-span-7">
               <span className="section-eyebrow">Selected Films</span>
               <h3 className="font-name mt-6 text-4xl font-semibold leading-[0.95] tracking-tight text-white md:text-6xl">
-                Showreel, cinematics, <span className="display-strong text-ember-400">expérimentations.</span>
+                <TextScramble text="Showreel, cinematics," /> <TextScramble text="expérimentations." className="display-strong text-ember-400" />
               </h3>
             </div>
             <p className="text-base leading-relaxed text-white/70 lg:col-span-5 max-w-[55ch]">

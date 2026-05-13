@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useReveal } from '../hooks/useReveal.js';
 import { services } from '../data/services.js';
 import { ArrowUpRight, X, Check, EnvelopeSimple } from '@phosphor-icons/react';
+import { TextScramble } from './ui/text-scramble.tsx';
 
 export default function Services() {
   const [ref, inView] = useReveal();
@@ -38,7 +39,7 @@ export default function Services() {
           >
             <span className="section-eyebrow">Spécialités</span>
             <h2 className="display mt-6 text-5xl text-white md:text-7xl">
-              Ce que je sais <span className="display-strong text-cyan-300">faire.</span>
+              <TextScramble text="Ce que je sais" /> <TextScramble text="faire." className="display-strong text-cyan-300" />
             </h2>
           </motion.div>
           <motion.p

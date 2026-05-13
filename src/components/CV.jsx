@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { DownloadSimple, FileText, Briefcase, GraduationCap, UsersThree, ArrowUpRight } from '@phosphor-icons/react';
+import { TextScramble } from './ui/text-scramble.tsx';
 import { useReveal } from '../hooks/useReveal.js';
 import { experiences, formations, collaborations } from '../data/cv.js';
 
@@ -18,7 +19,7 @@ export default function CV() {
           <div className="lg:col-span-7">
             <span className="section-eyebrow">Parcours</span>
             <h2 className="display mt-6 text-5xl text-white md:text-7xl">
-              CV & <span className="display-strong text-cyan-300">expérience.</span>
+              <TextScramble text="CV &" /> <TextScramble text="expérience." className="display-strong text-cyan-300" />
             </h2>
           </div>
           <div className="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">
